@@ -18,10 +18,10 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="eskating-link">
 
-                <a href="" class="dropdown-item">Antispark Switch</a>
-                <a href="" class="dropdown-item">Vesc</a>
-                <a href="" class="dropdown-item">Nrf Firefly Remote</a>
-                <a href="" class="dropdown-item">All
+                <a href="{% url 'products' %}?category=antisparkswitch" class="dropdown-item">Antispark Switch</a>
+                <a href="{% url 'products' %}?category=vesc" class="dropdown-item">Vesc</a>
+                <a href="{% url 'products' %}?category=nrffireflyremote" class="dropdown-item">Nrf Firefly Remote</a>
+                <a href="{% url 'products' %}?category=antisparkswitch,vesc,nrffireflyremote" class="dropdown-item">All
                     Eskating</a>
             </div>
         </li>
@@ -31,9 +31,9 @@
                 Fpv
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="fpv-link">
-                <a href="" class="dropdown-item">Flight Controller</a>
-                <a href="" class="dropdown-item">Esc</a>
-                <a href="" class="dropdown-item">All Fpv</a>
+                <a href="{% url 'products' %}?category=flightcontroller" class="dropdown-item">Flight Controller</a>
+                <a href="{% url 'products' %}?category=esc" class="dropdown-item">Esc</a>
+                <a href="{% url 'products' %}?category=flightcontroller,esc" class="dropdown-item">All Fpv</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -42,9 +42,9 @@
                 3D Printing
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="3dprinting-link">
-                <a href="" class="dropdown-item">Pla Filament</a>
+                <a href="{% url 'products' %}?category=plafilament" class="dropdown-item">Pla Filament</a>
 
-                <a href="" class="dropdown-item">All 3D Printing</a>
+                <a href="{% url 'products' %}?category=plafilament" class="dropdown-item">All 3D Printing</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -53,8 +53,8 @@
                 Electronic Components
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="electroniccomponents-link">
-                <a href="" class="dropdown-item">nrf2401l</a>
-                <a href="" class="dropdown-item">All Electronic
+                <a href="{% url 'products' %}?category=nrf2401l" class="dropdown-item">nrf2401l</a>
+                <a href="{% url 'products' %}?category=nrf2401l" class="dropdown-item">All Electronic
                     Components</a>
             </div>
         </li>
