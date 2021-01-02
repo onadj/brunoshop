@@ -25,6 +25,9 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
+    original_bag = models.TextField(null=False, blank=False, default='')
+    stripe_pid = models.CharField(
+        max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """
@@ -66,7 +69,7 @@ class OrderLineItem(models.Model):
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE)
     product_size = models.CharField(
-        max_length=2, null=True, blank=True)  # XS, S, M, L, XL if we have product size
+        max_length=2, null=True, blank=True)  # XS, S, M, L, XL
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
