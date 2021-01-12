@@ -104,6 +104,8 @@
                         {% endif %}
                     </div>
                 </fieldset>
+
+
                 <fieldset class="px-3">
                     <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                     <!-- A Stripe card element will go here -->
@@ -113,6 +115,15 @@
                     <!-- Pass the client secret to the view so we can get the payment intent id -->
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
+                <hr> or paypal
+
+                <div id="paypal-button-container"></div>
+
+                <!-- Include the PayPal JavaScript SDK -->
+                <script
+                    src="https://www.paypal.com/sdk/js?client-id=AQZMglWJvP4_FGOYTqR6khMwD02PeBu9MBBTPpdhlpAvA7xejezofq2YI8EpRLLkSMuligXKIFfCribk&currency=EUR"></script>
+
+
 
                 <div class="submit-button text-right mt-5 mb-2">
                     <a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
@@ -153,44 +164,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div id="paypal-button-container"></div>
 
-            <!-- Include the PayPal JavaScript SDK -->
-            <script
-                src="https://www.paypal.com/sdk/js?client-id=Ac4PtSfn18o0JrAcjxHRxd0_l9cAKIpMiRFKH4IkYsYixu9FhHh01UhIMBlcY1JX_ap1zyAqdqBSkpT1&currency=EUR"></script>
-
-            <script>
-                // Render the PayPal button into #paypal-button-container
-                paypal.Buttons({
-                    style: {
-                        color: 'gold',
-                        shape: 'rect',
-                        label: 'pay',
-                        height: 40
-                    },
-
-                    // Set up the transaction
-                    createOrder: function (data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: '1.01'
-                                }
-                            }]
-                        });
-                    },
-
-                    // Finalize the transaction
-                    onApprove: function (data, actions) {
-                        return actions.order.capture().then(function (details) {
-                            // Show a success message to the buyer
-                            alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                        });
-                    }
-
-
-                }).render('#paypal-button-container');
-            </script>
         </div>
 
     </div>
