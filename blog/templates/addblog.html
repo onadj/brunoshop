@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+
+    </div>
+
+
+</div>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="col text-center">
+                {% if request.user.is_superuser %}
+                <h3 class="text-success">Add New Blog</h3>
+
+                <form method="POST" enctype="multipart/form-data">
+                    <!--{% csrf_token %} {{ form.as_p }}
+            {{ form.media }} -->
+                    {% csrf_token %}
+                    {% for field in form %}
+                    {% if field.name != 'image' %}
+                    {{ field | as_crispy_field }}
+                    {% else %}
+                    {{ field }}
+                    {% endif %}
+                    {% endfor %}
+                    <button class="btn btn-sm font-weight-bold rounded-0 btn-outline-light text-white">POST</button>
+                    <br>
+                    <br>
+                    <a href="{% url 'bloghome' %}"
+                        class="btn btn-sm font-weight-bold rounded-0 btn-outline-light text-white">BACK</a>
+                </form>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#new-image').change(function () {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`);
+        });
+    </script>
+    {% endblock %}

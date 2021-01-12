@@ -17,7 +17,7 @@ def send_email(request):
                 we recived your email and will contact you shortly.')
             try:
                 send_mail(from_email, message, subject, [
-                          'djangorestaurant31@gmail.com'])
+                          'brunowebshop666@gmail.com'])
 
             except BadHeaderError:
                 return HttpResponse('invalid header')

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3 class="text-center">News</h3>
+{% if request.user.is_superuser %}
+<br>    
+            <a href="{% url 'addnewblog' %}" class="btn btn-sm font-weight-bold rounded-0 btn-outline-light text-white ">Add Blog</a>
+<br>
+<br>
+{% endif %}
+
+{% for post in object_list %}
+           <div class="col">
+                <h3>{{ post.title }}</h3>
+                        <p class="text-center font-italic">{{ post.body }}</p>    <br>
+    <img src="{{ post.image.url }}" class="rounded mx-auto d-block w-100">
+                          <br>
+    <i class="fas fa-user-edit"></i> {{ post.author }}
+<br>
+<br>
+    <i class="fas fa-clock"></i> {{ post.date_added }}
+<br>
+{% if request.user.is_superuser %}
+<br>
+<a href="{% url 'deleteblog' post.pk %}" class="btn btn-sm font-weight-bold rounded-0 btn-outline-light text-white">Delete Blog</a>                      
+{% endif %} 
+{% endfor %}
+{% endblock %}
